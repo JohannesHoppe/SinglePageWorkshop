@@ -1,0 +1,43 @@
+<?php
+
+echo $this->doctype();
+$basePath = $this->basePath();
+?>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<?php echo $this->headTitle('Developer Media - Knockout Demo')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+	<?php echo $this->headMeta()
+		->appendName('viewport', 'width=device-width, initial-scale=1.0')
+		->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+	?>
+
+	<!-- Le styles -->
+	<?php
+	echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $basePath . '/img/favicon.ico'))
+		->prependStylesheet($basePath . '/css/Site.css');
+	?>
+</head>
+<body>
+
+<div class="page">
+	<div id="header"></div>
+	<div id="main">
+		<?php echo $this->content; ?>
+	</div>
+</div>
+
+<!-- Scripts -->
+<?php
+echo $this->headScript()
+	->prependFile($basePath . '/js/require.config.js')
+	->prependFile($basePath . '/js/require.js');
+
+$scripts = $this->placeholder('scripts');
+echo "<script type='text/javascript'>{$scripts}</script>";
+?>
+
+</body>
+</html>

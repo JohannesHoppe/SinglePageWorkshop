@@ -1,0 +1,12 @@
+<?php
+
+require "_index.phtml";
+require "_edit.phtml";
+require "_page404.phtml";
+
+$js = "
+require(['singlePage/appState', 'knockout.bindings'], function(appState) {
+	appState.init();
+});";
+
+$this->placeholder('scripts')->set($js);
