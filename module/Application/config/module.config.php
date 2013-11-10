@@ -23,7 +23,8 @@ return array(
             'note' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/api/note[/:id]',
+                    'route'    => '/api/note[/[:id]]',
+                    //constraints' => array('id' => '[0-9]+'),
                     'defaults' => array(
                         'controller' => 'Application\Controller\Note'
                     )
@@ -61,6 +62,12 @@ return array(
             ),
         ),
     ),
+    'controllers' => array(
+        'invokables' => array(
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Note' => 'Application\Controller\NoteController'
+        ),
+    ),
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -78,12 +85,6 @@ return array(
                 'base_dir' => __DIR__ . '/../language',
                 'pattern'  => '%s.mo',
             ),
-        ),
-    ),
-    'controllers' => array(
-        'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Note' => 'Application\Controller\NoteController'
         ),
     ),
     'view_manager' => array(

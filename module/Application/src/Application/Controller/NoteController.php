@@ -7,9 +7,6 @@ use Zend\View\Model\JsonModel;
 
 class NoteController extends AbstractRestfulController {
 
-    /**
-     * @return array|mixed
-     */
     public function getList() {
 
         return new JsonModel(array('data' => array(
@@ -18,20 +15,12 @@ class NoteController extends AbstractRestfulController {
         )));
     }
 
-    /**
-     * @param mixed $id
-     * @return array|mixed
-     */
     public function get($id) {
         // @TODO Insert get code and return data. -Artimon
 
         return new JsonModel(array('data' => array('id' => $id, 'title' => 'Hallo')));
     }
 
-    /**
-     * @param mixed $data
-     * @return int|mixed
-     */
     public function create($data) {
         // @TODO Insert create code and return data by new id. -Artimon
         $newId = 3;
@@ -41,11 +30,6 @@ class NoteController extends AbstractRestfulController {
         ));
     }
 
-    /**
-     * @param mixed $id
-     * @param mixed $data
-     * @return mixed|JsonModel
-     */
     public function update($id, $data) {
         // @TODO Add update code here. -Artimon
 
@@ -54,10 +38,6 @@ class NoteController extends AbstractRestfulController {
         ));
     }
 
-    /**
-     * @param mixed $id
-     * @return mixed|JsonModel
-     */
     public function delete($id) {
         // @TODO Add delete code here. -Artimon
 
