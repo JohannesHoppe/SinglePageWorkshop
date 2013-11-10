@@ -1,4 +1,18 @@
 <?php
+
+/**
+ * Define application environment constant
+ */
+defined('APPLICATION_ENV') || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
+
+/**
+ * Display all errors when APPLICATION_ENV is development.
+ */
+if (APPLICATION_ENV == 'development') {
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
+}
+
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.
