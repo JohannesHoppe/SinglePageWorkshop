@@ -7,12 +7,6 @@ use Zend\View\Model\JsonModel;
 
 class NoteController extends AbstractRestfulController {
 
-    public function indexAction()
-    {
-        return new JsonModel();
-    }
-
-
     /**
      * @return array|mixed
      */
@@ -31,7 +25,7 @@ class NoteController extends AbstractRestfulController {
     public function get($id) {
         // @TODO Insert get code and return data. -Artimon
 
-        return new JsonModel(array('data' => array('id' => 1, 'title' => 'Hallo')));
+        return new JsonModel(array('data' => array('id' => $id, 'title' => 'Hallo')));
     }
 
     /**
