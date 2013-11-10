@@ -82,7 +82,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Note' => 'Application\Controller\NoteController'
         ),
     ),
     'view_manager' => array(

@@ -9,7 +9,7 @@ class NoteController extends AbstractRestfulController {
 
     public function indexAction()
     {
-        return new ViewModel();
+        return new JsonModel();
     }
 
 
@@ -17,12 +17,11 @@ class NoteController extends AbstractRestfulController {
      * @return array|mixed
      */
     public function getList() {
-        // @TODO Insert get all code and return data. -Artimon
 
-        return array('data' => array(
+        return new JsonModel(array('data' => array(
             array('id' => 1, 'title' => 'Hallo'),
             array('id' => 2, 'title' => 'Du'),
-        ));
+        )));
     }
 
     /**
@@ -32,7 +31,7 @@ class NoteController extends AbstractRestfulController {
     public function get($id) {
         // @TODO Insert get code and return data. -Artimon
 
-        return array('data' => array('id' => 1, 'title' => 'Hallo'));
+        return new JsonModel(array('data' => array('id' => 1, 'title' => 'Hallo')));
     }
 
     /**
