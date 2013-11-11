@@ -8,3 +8,10 @@ nbproject
 .settings
 composer.lock
 vendor/bin
+
+obj/
+bin/
+packages/
+*.user
+*.suo
+_Resharper*
