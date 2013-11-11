@@ -1,5 +1,5 @@
-﻿define(['jquery', 'knockout', 'polyfills/iso8601', 'polyfills/datejs'],
-function ($, ko) {
+﻿define(['jquery', 'knockout', 'singlePage/appState', 'polyfills/iso8601', 'polyfills/datejs'],
+function ($, ko, appState) {
 
     var colorMapping = [
         { category: 'important', color: "red" },
@@ -29,7 +29,17 @@ function ($, ko) {
             }
         }
     };
+    
+    ko.bindingHandlers.changeStateOnClick = {
+        init: function (element, valueAccessor) {
 
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            $(element).click(function () {
+                appState.changeState(value.viewId, value.param);
+            });
+        }
+    };
+    
     // uses Date.js
     // expects a string in ISO 8601 format
     ko.bindingHandlers.dateText = {
@@ -45,7 +55,7 @@ function ($, ko) {
             $(element).text(formatedByDatejs);
         }
     };
-    
+
     /* seems to be a Knockout + jQuery + Adblock Plus bug ... I don't even know where to report that issue?!
        so i had to add event.stopPropagation();
        */
@@ -71,5 +81,5 @@ function ($, ko) {
                 }
             });
         }
-    };
+    };                   
 });

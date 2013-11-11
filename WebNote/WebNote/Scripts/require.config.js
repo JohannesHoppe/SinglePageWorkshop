@@ -7,7 +7,8 @@
         'knockout': 'knockout-2.3.0.debug',
         'knockout.mapping': 'knockout.mapping-latest',
         'knockout.validation' : 'knockout.validation.debug',
-        'fonts/buxtonSketch': 'fonts/Buxton_Sketch_400.font'
+        'fonts/buxtonSketch': 'fonts/Buxton_Sketch_400.font',
+        'sammy': 'sammy-0.7.4'
     },
     shim: {
         'knockout': { deps: ['jquery', 'polyfills/json2'] },
@@ -17,6 +18,6 @@
         'polyfills/json2': { exports: 'JSON.stringify' },
         'polyfills/iso8601': { exports: 'Date.parseISO' },
         'fonts/buxtonSketch': { deps: ['polyfills/cufon'], exports: 'Cufon' },
-    },
-    deps: ['jquery.loadingIndicator']
+        'sammy': { deps: ['jquery'] }
+    }
 });

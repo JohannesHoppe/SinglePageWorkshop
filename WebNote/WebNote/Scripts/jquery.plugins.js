@@ -1,11 +1,7 @@
-﻿define(['jquery', 'globalEvent', 'jquery.cufon', 'jquery.dropShadows'], function ($, globalEvent) {
+﻿define(['jquery', 'jquery.cufon', 'jquery.dropShadows'], function ($) {
 
     $.refreshPage = function () {
         $.dropShadows();
         $.cufon();
     };
-
-    globalEvent.bind('dataLoaded', function () {
-        $.refreshPage();
-    });
 });

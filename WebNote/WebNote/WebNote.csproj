@@ -143,13 +143,11 @@
     </Compile>
     <Compile Include="AppStart\RouteConfig.cs" />
     <Compile Include="AppStart\WebApiConfig.cs" />
-    <Compile Include="Code\ValidateModelAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\INoteRepository.cs" />
     <Compile Include="Models\NoteRepository.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\PagedList.cs" />
@@ -160,8 +158,6 @@
     <Content Include="Content\images\notifications\success.png" />
     <Content Include="Content\images\notifications\warning.png" />
     <Content Include="Scripts\app\EditPageViewModel.js" />
-    <Content Include="Scripts\app\editPage.js" />
-    <Content Include="Scripts\app\indexPage.js" />
     <Content Include="Content\01_main.less">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -183,8 +179,7 @@
     <None Include="Scripts\jquery-2.0.3.intellisense.js">
       <DependentUpon>jquery-2.0.3.js</DependentUpon>
     </None>
-    <Content Include="Scripts\domReady.js" />
-    <Content Include="Scripts\globalEvent.js" />
+    <Content Include="Scripts\app\Page404ViewModel.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js">
       <DependentUpon>jquery-2.0.3.js</DependentUpon>
@@ -231,10 +226,20 @@
       <DependentUpon>require.js</DependentUpon>
     </Content>
     <Content Include="Scripts\require.js" />
-    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Scripts\sammy-0.7.4.js" />
+    <Content Include="Scripts\sammy-0.7.4.min.js">
+      <DependentUpon>sammy-0.7.4.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\singlePage\app.js" />
+    <Content Include="Scripts\singlePage\appState.js" />
+    <Content Include="Scripts\singlePage\bindLoadingIndicator.js" />
+    <Content Include="Scripts\singlePage\bindRefreshPage.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map">
       <DependentUpon>jquery-2.0.3.js</DependentUpon>
     </Content>
+    <Content Include="Views\Home\_edit.cshtml" />
+    <Content Include="Views\Home\_index.cshtml" />
+    <Content Include="Views\Home\_page404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\ajax-loader.gif" />

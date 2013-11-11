@@ -1,4 +1,4 @@
-﻿define(['jquery', 'knockout', 'knockout.mapping', 'globalEvent'], function ($, ko, mapping, globalEvent) {
+﻿define(['jquery', 'knockout', 'knockout.mapping', 'singlePage/appState'], function ($, ko, mapping, appState) {
 
     var IndexPageViewModel = function () {
 
@@ -7,29 +7,20 @@
         self.header = ko.observable("Example");
         self.notes = ko.observableArray();
 
-        self.loadData = function () {
+        self.loadData = function (callback) {
 
-            globalEvent.trigger('loadData');
-
-            $.ajax('/api/note')
-            .done(function (xhr) {
+            $.ajax('/api/note').done(function (xhr) {
                 self.notes = mapping.fromJS(xhr, {}, self.notes);
-            }).done(function() {
-                globalEvent.trigger('dataLoaded');
+                callback.call(self);
             });
         };
         
         self.createNote = function () {
-
             $.post('api/note/').done(function (newId) {
-                self.goToDetails.call({ Id: function () { return newId; }});
+                appState.changeState("edit", newId);
             });
         };
-
-        self.goToDetails = function () {
-            document.location.href = "/Home/Edit/" + this.Id();
-        };
-        
+       
         self.deleteNote = function (data) {
             $.ajax({
                 url: 'api/note/' + data.Id(),

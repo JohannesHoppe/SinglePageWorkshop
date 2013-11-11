@@ -8,17 +8,17 @@
     @BundleConfig.RenderLess(BundleConfig.StylesLess)
 </head>
 <body>
-        
+    
     <div class="page">
-        <div id="header"><small>nachher</small></div>
+        <div id="header"></div>
         <div id="main">
             @RenderBody()
         </div>
     </div>
 
+   
 @Scripts.Render(BundleConfig.ScriptsGlobal)
-@RenderSection("scripts", false)
-
-  
+<script>@RenderSection("scripts", false)</script>
+   
 </body>
 </html>

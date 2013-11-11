@@ -1,53 +1,36 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using DeveloperMediaDemo.Code;
 using DeveloperMediaDemo.Models;
 
 namespace DeveloperMediaDemo.Controllers
 {
     public class NoteController : ApiController
     {
-        private readonly INoteRepository _repository;
-
-        public NoteController()
-        {
-            _repository = new NoteRepository();
-        }
-
-        public NoteController(INoteRepository repository)
-        {
-            _repository = repository;
-        }
         public IEnumerable<Note> GetAll()
         {
-            return _repository.ReadAll();
+            return NoteRepository.ReadAll();
         }
 
         public Note Get(int id)
         {
-            return _repository.Read(id);
+            return NoteRepository.Read(id);
         }
 
-        public HttpResponseMessage Post()
+        public int Post()
         {
             var newNote = new Note();
-            _repository.Create(newNote);
-            return Request.CreateResponse(HttpStatusCode.Created, newNote.Id);
+            NoteRepository.Create(newNote);
+            return newNote.Id;
         }
 
-        [ValidateModel]
-        public HttpResponseMessage Put(Note note)
+        public void Put(Note note)
         {
-            _repository.Update(note);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            NoteRepository.Update(note);
         }
 
         public void Delete(int id)
         {
-            _repository.Delete(id);
+            NoteRepository.Delete(id);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿define(['jquery', 'knockout', 'knockout.mapping', 'globalEvent', 'knockout.validation'], function ($, ko, mapping, globalEvent) {
+﻿define(['jquery', 'knockout', 'knockout.mapping', 'knockout.validation'], function ($, ko, mapping) {
 
     var EditPageViewModel = function(id) {
 
@@ -21,14 +21,11 @@
         self.CategoryChoices = ['important', 'hobby', 'private'];
         self.status = ko.observable('');
         
-        self.loadData = function () {
-
-            globalEvent.trigger('loadData');
+        self.loadData = function (callback) {
 
             $.ajax('/api/note/' + id).done(function (xhr) {
                 self = mapping.fromJS(xhr, {}, self);
-            }).done(function () {
-                globalEvent.trigger('dataLoaded');
+                callback.call(self);
             });
         };
 

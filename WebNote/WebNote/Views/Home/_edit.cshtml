@@ -1,14 +1,9 @@
-﻿@section scripts  {
-<script>    
-    var id = '@ViewBag.Id';
+﻿<section id="edit_view"
+         data-view-model="EditPageViewModel"
+         data-bind="template: { name: 'edit_template' }">
+</section>
 
-    require(['app/editPage'], function(i) { 
-        i.init(id); 
-    });
-</script>
-}
-
-<div id="edit_template">
+<script type="text/html" id="edit_template">
     
     <h1 data-bind="text: 'Details of Note No. ' + Id()"></h1>
     
@@ -18,7 +13,7 @@
     
     <div class="drop_shadow bigpostit" data-bind="choseCategoryColor: Categories">
            
-        <form data-bind="submit: saveForm">
+        <form data-bind="submit: saveForm ">
             <fieldset>
         
                 <label class="display-label rowLeft">Title:</label>
@@ -54,7 +49,7 @@
     </div>
     
     <p>
-        <a href="/">&#171; Back to List</a>
+        <a data-bind="changeStateOnClick: { viewId: 'index' }">&#171; Back to List</a>
     </p>
 
-</div>
+</script>
