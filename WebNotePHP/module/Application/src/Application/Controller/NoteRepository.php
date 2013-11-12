@@ -22,13 +22,10 @@ class NoteRepository {
 
     public function read($id)
     {
-        $cursor = $this->notes->find(['_id' => $id]);
-
-        $result = [];
-        foreach ($cursor as $doc) {
-            $result[] = $this->docToArray($doc);
-        }
-        return $result;
+        // The most common mistake is attempting to use a string to match a MongoId.
+        $id = new \MongoId($id);
+        $doc = $this->notes->findOne(array('_id' => $id));
+        return $this->docToArray($doc);;
     }
 
     public function readAll()

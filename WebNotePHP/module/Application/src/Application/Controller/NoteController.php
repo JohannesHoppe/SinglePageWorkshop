@@ -8,16 +8,18 @@ use Zend\View\Model\JsonModel;
 
 class NoteController extends AbstractRestfulController {
 
-    public function getList() {
+    private $repository;
 
-        $repository = new NoteRepository();
-        return new JsonModel($repository->readAll());
+    public function __construct() {
+        $this->repository = new NoteRepository();
+    }
+
+    public function getList() {
+        return new JsonModel($this->repository->readAll());
     }
 
     public function get($id) {
-        // @TODO Insert get code and return data. -Artimon
-
-        return new JsonModel(array('data' => array('id' => $id, 'title' => 'Hallo')));
+        return new JsonModel($this->repository->read($id));
     }
 
     public function create($data) {
