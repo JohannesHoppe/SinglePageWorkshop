@@ -14,36 +14,39 @@ class NoteController extends AbstractRestfulController {
         $this->repository = new NoteRepository();
     }
 
+    // GET
     public function getList() {
         return new JsonModel($this->repository->readAll());
     }
 
+    // GET
     public function get($id) {
         return new JsonModel($this->repository->read($id));
     }
 
+    // POST
     public function create($data) {
-        // @TODO Insert create code and return data by new id. -Artimon
-        $newId = 3;
 
-        return new JsonModel(array(
-            $this->get($newId)
-        ));
+        $emptyNote = array(
+            'Title' => "",
+            'Message' => "",
+            'Added' => new \MongoDate(),
+            'Categories' => []
+        );
+
+        $newId = $this->repository->create($emptyNote);
+        return new JsonModel([$newId]);
     }
 
+    // PUT
     public function update($id, $data) {
-        // @TODO Add update code here. -Artimon
-
-        return new JsonModel(array(
-            $this->get($id)
-        ));
+        $this->repository->update($data);
+        return new JsonModel();
     }
 
+    // DELETE
     public function delete($id) {
-        // @TODO Add delete code here. -Artimon
-
-        return new JsonModel(array(
-            'data' => 'deleted'
-        ));
+        $this->repository->delete($id);
+        return new JsonModel();
     }
 }

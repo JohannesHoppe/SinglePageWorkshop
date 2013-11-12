@@ -18,6 +18,7 @@ class NoteRepository {
     public function create($item)
     {
         $this->notes->insert($item);
+        return $item["_id"]->{'$id'};
     }
 
     public function read($id)
@@ -41,12 +42,21 @@ class NoteRepository {
 
     public function update($item)
     {
+        $filter = array('_id' => new \MongoId($item["Id"]));
 
+        $update = array('$set' => array(
+            'Title' => $item["Title"],
+            'Message' => $item["Message"],
+            'Categories' => $item["Categories"])
+        );
+
+        $this->notes->update($filter, $update);
     }
 
     public function delete($id)
     {
-
+        $id = new \MongoId($id);
+        $this->notes->remove(array('_id' => $id));
     }
 
     private function docToArray($doc) {

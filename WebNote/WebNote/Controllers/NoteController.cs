@@ -26,8 +26,7 @@ namespace DeveloperMediaDemo.Controllers
         public string Post()
         {
             var newNote = new Note();
-            repository.Create(newNote);
-            return newNote.Id;
+            return repository.Create(newNote);
         }
 
         public void Put(Note note)

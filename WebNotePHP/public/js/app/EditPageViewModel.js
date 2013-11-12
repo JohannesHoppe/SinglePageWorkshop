@@ -37,7 +37,7 @@
             }
 
             $.ajax({
-                url: '/api/note',
+                url: '/api/note/' + self.Id(),
                 type: 'put',
                 data: ko.toJSON(self),
                 contentType: 'application/json'

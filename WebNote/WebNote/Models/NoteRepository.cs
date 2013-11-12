@@ -29,9 +29,10 @@ namespace DeveloperMediaDemo.Models
             notes = database.GetCollection<Note>(CollectionName);            
         }
 
-        public void Create(Note item)
+        public string Create(Note item)
         {
             notes.Insert(item);
+            return item.Id;
         }
 
         public Note Read(string id)
