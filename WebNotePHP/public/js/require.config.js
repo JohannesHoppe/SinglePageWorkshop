@@ -12,7 +12,7 @@
     },
     shim: {
         'knockout': { deps: ['jquery', 'polyfills/json2'] },
-        'knockout.validation': { deps: ['knockout.legacy'], exports: 'ko.applyBindingsWithValidation', },
+        'knockout.validation': { deps: ['knockout.legacy'], exports: 'ko.applyBindingsWithValidation' },
         'polyfills/cufon': { exports: 'Cufon' },
         'polyfills/datejs': { exports: 'Date.CultureInfo' },
         'polyfills/json2': { exports: 'JSON.stringify' },

@@ -96,7 +96,12 @@ h5, h6 {
 #header {
   height: 169px;
   width: 830px;
-  background: url("../img/logo.png") no-repeat scroll right 45px;
+  background: url("../img/logo.png") no-repeat scroll right 25px;
+}
+
+#header h1 {
+  font-size: 60px;
+  padding-top: 30px;
 }
 
 #main {

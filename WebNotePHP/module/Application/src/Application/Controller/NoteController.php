@@ -9,10 +9,15 @@ class NoteController extends AbstractRestfulController {
 
     public function getList() {
 
-        return new JsonModel(array('data' => array(
-            array('id' => 1, 'title' => 'Hallo'),
-            array('id' => 2, 'title' => 'Du'),
-        )));
+        return new JsonModel([
+            [
+                "Id" => "5282727b660b934d344ebbcd",
+                "Title" => "Testeintrag",
+                "Message" => "Ein gruener Postit",
+                "Added" => "2012-06-12T22:00:00Z",
+                "Categories" => ["hobby", "private"]
+            ]
+        ]);
     }
 
     public function get($id) {
