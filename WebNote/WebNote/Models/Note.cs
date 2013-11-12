@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace DeveloperMediaDemo.Models
 {
@@ -13,11 +15,24 @@ namespace DeveloperMediaDemo.Models
             Categories = new List<string>();
         }
 
-        public int Id { get; set; }
+        /// <summary>
+        /// Gets or sets the "Primary Key" for EF (SQL), MongoDB and RavenDB
+        /// </summary>
+        /// <remarks>
+        /// BsonId: When you inserting a document this generates a new unique value
+        /// BsonRepresentation: The serializer will convert the ObjectId to a string when reading data and
+        /// will convert the string back to an ObjectId when writing data to the database
+        /// </remarks>
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
         public string Title { get; set; }
+
         public string Message { get; set; }
+
         public DateTime Added { get; set; }
 
-        public IEnumerable<string> Categories { get; set; }
+        public List<string> Categories { get; set; }
     }
 }

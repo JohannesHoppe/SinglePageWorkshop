@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+using MongoDB.Driver.Linq;
+using Builders = MongoDB.Driver.Builders;
 
 namespace DeveloperMediaDemo.Models
 {
@@ -9,77 +15,57 @@ namespace DeveloperMediaDemo.Models
     /// </summary>
     public class NoteRepository
     {
-        public static void Create(Note item)
+        private const string ConnectionStringName = "MongoDB";
+        private const string DatabaseName = "WebNote";
+        private const string CollectionName = "Notes";
+
+        private readonly MongoDatabase database;
+        private readonly MongoServer server;
+        private readonly MongoCollection<Note> notes;
+
+        public NoteRepository()
         {
-            int highestId = 0;
-
-            if (CurrentData.Any()) {
-                highestId = CurrentData.OrderByDescending(i => i.Id).First().Id;
-            }
-
-            item.Id = highestId + 1;
-            CurrentData.Add(item);
+            string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
+            MongoClient client = new MongoClient(connectionString);
+            server = client.GetServer();
+            database = server.GetDatabase(DatabaseName);
+            notes = database.GetCollection<Note>(CollectionName);            
         }
 
-        public static Note Read(int id)
+        public void Create(Note item)
         {
-            return CurrentData.First(c => c.Id == id);
+            notes.Insert(item);
         }
 
-        public static IEnumerable<Note> ReadAll()
+        public Note Read(string id)
         {
-            return CurrentData;
+            return (from n in notes.AsQueryable()
+                    where n.Id == id
+                    select n).First();
+        }
+
+        public IEnumerable<Note> ReadAll()
+        {
+            return (from n in notes.AsQueryable()
+                    orderby n.Id ascending
+                    select n).ToList();
         }        
         
-        public static PagedList<Note> ReadAll(int skip, int take)
+        public void Update(Note item)
         {
-            IEnumerable<Note> pagedData = CurrentData.Skip(skip).Take(take);
+            Note note = Read(item.Id);
 
-            return new PagedList<Note>
-                {
-                    Items = pagedData,
-                    TotalRecords = InitialData.Count(),
-                };
+            note.Title = item.Title;
+            note.Message = item.Message;
+            note.Categories = item.Categories;
+
+            var query = Query.EQ("_id", ObjectId.Parse(item.Id));
+            notes.Update(query, Builders.Update.Replace(note));
         }
 
-        public static void Update(Note item)
+        public void Delete(string id)
         {
-            var itemToUpdate = Read(item.Id);
-
-            itemToUpdate.Id = item.Id;
-            itemToUpdate.Title = item.Title;
-            itemToUpdate.Message = item.Message;
-            itemToUpdate.Added = item.Added;
-            itemToUpdate.Categories = item.Categories;
+            notes.Remove(Query.EQ("_id", ObjectId.Parse(id)));
         }
-
-        public static void Delete(int id)
-        {
-            var itemToDelete = Read(id);
-            CurrentData.Remove(itemToDelete);
-        }
-
-        #region inital data
-
-        static NoteRepository()
-        {
-            CurrentData = InitialData;
-        }
-
-        private static readonly List<Note> CurrentData;
-
-        private static List<Note> InitialData
-        {
-            get
-            {
-                return new List<Note>
-                    {
-                        new Note { Id = 1, Title = "Ein PostIt", Message = "Hello World", Added = new DateTime(2013, 05, 27, 16, 15, 22), Categories = new[] { "important" }},
-                        new Note { Id = 2, Title = "Zweites Beispiel", Message = "Alles mit Bindings", Added = new DateTime(2013, 05, 27, 16, 30, 23), Categories = new[] { "private" } },
-                        new Note { Id = 3, Title = "Drittes Beispiel", Message = "Geladen über WebApi", Added = new DateTime(2013, 05, 27, 16, 45, 24), Categories = new[] { "hobby", "private" } }
-                    };
-            }
-        }
-        #endregion
     }
 }

@@ -6,31 +6,38 @@ namespace DeveloperMediaDemo.Controllers
 {
     public class NoteController : ApiController
     {
+        private NoteRepository repository;
+
+        public NoteController()
+        {
+            repository = new NoteRepository();
+        }
+
         public IEnumerable<Note> GetAll()
         {
-            return NoteRepository.ReadAll();
+            return repository.ReadAll();
         }
 
-        public Note Get(int id)
+        public Note Get(string id)
         {
-            return NoteRepository.Read(id);
+            return repository.Read(id);
         }
 
-        public int Post()
+        public string Post()
         {
             var newNote = new Note();
-            NoteRepository.Create(newNote);
+            repository.Create(newNote);
             return newNote.Id;
         }
 
         public void Put(Note note)
         {
-            NoteRepository.Update(note);
+            repository.Update(note);
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
-            NoteRepository.Delete(id);
+            repository.Delete(id);
         }
     }
 }

@@ -61,6 +61,12 @@
       <HintPath>..\packages\dotless.1.3.1.0\lib\dotless.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -222,7 +228,9 @@
     <Content Include="Scripts\polyfills\datejs.js" />
     <Content Include="Scripts\app\IndexPageViewModel.js" />
     <Content Include="Scripts\polyfills\json2.js" />
-    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.config.js">
+      <DependentUpon>require.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js">
