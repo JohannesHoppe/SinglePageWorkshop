@@ -156,7 +156,6 @@
     </Compile>
     <Compile Include="Models\NoteRepository.cs" />
     <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\notifications\error.png" />

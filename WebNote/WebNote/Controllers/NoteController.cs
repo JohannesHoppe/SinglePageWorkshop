@@ -6,7 +6,7 @@ namespace DeveloperMediaDemo.Controllers
 {
     public class NoteController : ApiController
     {
-        private NoteRepository repository;
+        private readonly NoteRepository repository;
 
         public NoteController()
         {

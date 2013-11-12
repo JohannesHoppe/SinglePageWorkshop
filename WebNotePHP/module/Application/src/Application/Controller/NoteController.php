@@ -2,6 +2,7 @@
 
 namespace Application\Controller;
 
+use Application\Repository;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\View\Model\JsonModel;
 
@@ -9,15 +10,8 @@ class NoteController extends AbstractRestfulController {
 
     public function getList() {
 
-        return new JsonModel([
-            [
-                "Id" => "5282727b660b934d344ebbcd",
-                "Title" => "Testeintrag",
-                "Message" => "Ein gruener Postit",
-                "Added" => "2012-06-12T22:00:00Z",
-                "Categories" => ["hobby", "private"]
-            ]
-        ]);
+        $repository = new NoteRepository();
+        return new JsonModel($repository->readAll());
     }
 
     public function get($id) {

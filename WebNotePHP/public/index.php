@@ -4,6 +4,8 @@
  * Define application environment constant
  */
 defined('APPLICATION_ENV') || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
+date_default_timezone_set('Europe/Berlin');
+
 
 /**
  * Display all errors when APPLICATION_ENV is development.

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using MongoDB.Bson;
@@ -19,16 +18,14 @@ namespace DeveloperMediaDemo.Models
         private const string DatabaseName = "WebNote";
         private const string CollectionName = "Notes";
 
-        private readonly MongoDatabase database;
-        private readonly MongoServer server;
         private readonly MongoCollection<Note> notes;
 
         public NoteRepository()
         {
             string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
             MongoClient client = new MongoClient(connectionString);
-            server = client.GetServer();
-            database = server.GetDatabase(DatabaseName);
+            MongoServer server = client.GetServer();
+            MongoDatabase database = server.GetDatabase(DatabaseName);
             notes = database.GetCollection<Note>(CollectionName);            
         }
 
