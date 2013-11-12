@@ -25,7 +25,8 @@
             $.ajax({
                 url: 'api/note/' + data.Id(),
                 type: 'DELETE'
-            }).success(self.loadData);
+            }).success(self.loadData)
+              .done(appState.reload);
         };
     };
 
