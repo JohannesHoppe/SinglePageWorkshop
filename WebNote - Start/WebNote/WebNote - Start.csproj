@@ -225,7 +225,6 @@
     </Content>
     <Content Include="Scripts\polyfills\iso8601.js" />
     <Content Include="Scripts\polyfills\datejs.js" />
-    <Content Include="Scripts\app\IndexPageViewModel.js" />
     <Content Include="Scripts\polyfills\json2.js" />
     <Content Include="Scripts\require.config.js">
       <DependentUpon>require.js</DependentUpon>
@@ -235,8 +234,6 @@
     <Content Include="Scripts\sammy-0.7.4.min.js">
       <DependentUpon>sammy-0.7.4.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\singlePage\app.js" />
-    <Content Include="Scripts\singlePage\appState.js" />
     <Content Include="Scripts\singlePage\bindLoadingIndicator.js" />
     <Content Include="Scripts\singlePage\bindRefreshPage.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map">

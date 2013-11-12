@@ -3,7 +3,7 @@
 @Html.Partial("~/Views/Home/_page404.cshtml")
 
 @section scripts  {
-    require(['singlePage/appState', 'knockout.bindings'], function(appState) {
-        appState.init();
+    require(['jquery', 'jquery.plugins'], function($) {
+        $.refreshPage();
     });
 }
