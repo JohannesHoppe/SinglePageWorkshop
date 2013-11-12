@@ -1,6 +1,32 @@
-﻿@Html.Partial("~/Views/Home/_index.cshtml")
-@Html.Partial("~/Views/Home/_edit.cshtml")
-@Html.Partial("~/Views/Home/_page404.cshtml")
+﻿<h1>Header</h1>
+
+<p>
+    <a>Create New</a>
+</p>
+
+<div>
+
+    <div class="drop_shadow postit green">
+
+        <a class="deleteLink">x</a>
+
+        <div class="sexy_date">
+            <h1 class="day">dd</h1>
+            <h1 class="month">MMM</h1>
+            <h1 class="year">yyyy</h1>
+        </div>
+
+        <h2>Title</h2>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+
+        <a>Details</a>
+
+    </div>
+</div>
+
+@* @Html.Partial("~/Views/Home/_index.cshtml")*@
+@* @Html.Partial("~/Views/Home/_edit.cshtml")*@
+@* @Html.Partial("~/Views/Home/_page404.cshtml")*@
 
 @section scripts  {
     require(['jquery', 'jquery.plugins'], function($) {
